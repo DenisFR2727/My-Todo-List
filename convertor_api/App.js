@@ -22,7 +22,6 @@ const Convertor = () => {
         try{
             const response = await  fetch("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchangenew?json");
             const data = await response.json();
-            console.log('7877')
             setUsdRate(data[24].rate)
             setEurRate(data[31].rate)
         }catch(error){
