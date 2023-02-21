@@ -28,8 +28,8 @@ const decrement = useCallback((i) => {
     return (
         <div className="counter_form">
               <div className="count">Counter: {count}</div>
-              <button onClick={increment} className="inc_but">increment</button>
-              <button onClick={decrement} className="dec_but">decrement</button>
+              <button onClick={() => increment(1)} className="inc_but">increment</button>
+              <button onClick={() => decrement(1)} className="dec_but">decrement</button>
         </div>
     )
 }
