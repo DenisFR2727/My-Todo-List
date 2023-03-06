@@ -40,8 +40,6 @@ const handlerCompleted = (id) => {
         const newTasks = [...tasks];
         newTasks.splice(taskIndex, 1);
         setTasks(newTasks);
-        console.log(completedTask)
-        
 }
 
 const renderItems = (arr) => {
