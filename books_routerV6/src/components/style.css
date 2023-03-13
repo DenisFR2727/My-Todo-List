@@ -1,0 +1,31 @@
+body{
+    margin: 0;
+}
+.headers_books{
+    margin: 0 auto;
+    width: 1024px;
+    height: 75px;
+    background-color: burlywood;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav{
+    display: flex;
+    justify-content: space-around;
+    width: inherit;
+}
+nav ul {
+    display: flex;
+    list-style: none;
+}
+ul{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.main_info{
+    margin: 0 auto;
+    width: 1024px;
+    height: fit-content;
+}
