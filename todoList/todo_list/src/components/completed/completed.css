@@ -1,0 +1,21 @@
+.completed_list{
+    /* position: relative; */
+    margin-top: 10px;
+    width: 100%;
+    /* height: 2px; */
+    max-height: fit-content;
+    /* background-color: black; */
+    margin-top: 70px;
+}
+.line_completed{
+    margin-top: 10px;
+    width: 100%;
+    height: 2px;
+    background-color: black;
+}
+.word_completed_wrap{
+    word-wrap: break-word;
+}
+.word_completed_wrap:hover{
+    background-color: yellow;
+}
