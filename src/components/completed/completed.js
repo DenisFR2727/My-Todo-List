@@ -24,4 +24,4 @@ const moveTaskToCompleted = (taskId, completed) => {
         </div>
     )
 }
-export default Completed;
+export default Completed
