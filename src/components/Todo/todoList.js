@@ -1,5 +1,5 @@
 import { useStateValues } from "../context/stateValuesProvider";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import DeleteTask from "../deleteTask/deleteTask";
 import EditTask from "../editTask/editTask";
 import Completed from "../completed/completed";
@@ -12,29 +12,39 @@ const Task = styled.div`
 
 const TodoList = () => {
     const { stateValues, setStateValues } = useStateValues();
-  
     const [editingTasks, setEditingTasks] = useState({});
-  
+    const [isEditing, setIsEditing] = useState(false); 
+
     const handleChange = (e, taskId) => {
       setEditingTasks((prevEditingTasks) => ({
         ...prevEditingTasks,
         [taskId]: e.target.value,
       }));
     };
-  
+    useEffect(() => {
+        // Перевіряємо, чи є значення в editingTasks, що вимагає редагування
+        const hasEditingTask = Object.values(editingTasks).some(value => value !== undefined);
+        setIsEditing(hasEditingTask);
+      }, [editingTasks]);
+
     const handleSave = (taskId) => {
-      if (editingTasks[taskId] !== undefined) {
-        const newTasks = stateValues.map((task) => {
-          if (task.id === taskId) {
-            return { ...task, name: editingTasks[taskId] };
-          }
-          return task;
-        });
-        setStateValues(newTasks);
-        setEditingTasks((prevEditingTasks) => ({
-          ...prevEditingTasks,
-          [taskId]: undefined,
-        }));
+      const editedText = editingTasks[taskId].trim();
+      if (editingTasks[taskId] !== undefined && editedText !== "") {
+        if(editedText !== ""){
+            const newTasks = stateValues.map((task) => {
+                if (task.id === taskId) {
+                 
+                  return { ...task, name: editingTasks[taskId] };
+                }
+                return task;
+              });
+              setStateValues(newTasks);
+              setEditingTasks((prevEditingTasks) => ({
+                ...prevEditingTasks,
+                [taskId]: undefined,
+              })); 
+              
+        }
       }
     };
   
@@ -59,7 +69,8 @@ const TodoList = () => {
                       value={editingTasks[item.id]}
                       onChange={(e) => handleChange(e, item.id)}
                     />
-                    <button onClick={() => handleSave(item.id)}>Save</button>
+                    <button onClick={() => handleSave(item.id)} 
+                            disabled={!isEditing}>Save</button>
                   </div>
                 ) : (
                   <div>{item.name}</div>
