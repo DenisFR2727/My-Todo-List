@@ -21,6 +21,7 @@ const AppWrapper = styled.div`
         list-style: none;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         padding-top: 10px;
        
       div{
