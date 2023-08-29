@@ -1,8 +1,7 @@
 import { useStateValues } from "../context/stateValuesProvider";
 
-
 const Completed = (props) => {
-const {stateValues, setStateValues} = useStateValues();
+const {stateValues, setStateValues, } = useStateValues();
 
 const moveTaskToCompleted = (taskId, completed) => {
     const updatedTasks = stateValues.map((task) =>

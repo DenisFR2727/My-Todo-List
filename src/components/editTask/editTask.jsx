@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { useStateValues } from "../context/stateValuesProvider";
 
 const Edit = styled.div`
   margin-right: 5px;
@@ -7,7 +6,7 @@ const Edit = styled.div`
 
 const EditTask = (props) => {
   const { startEdit } = props;
-
+// функція належить цьому компоненту
   const editTask = () => {
     startEdit(props.taskId);
   };

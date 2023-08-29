@@ -9,6 +9,7 @@ export const StateValuesProvider = ({ children }) => {
       });
     const [isEdit, setIsEdit] = useState(false);
     const [taskId, setTaskId] = useState("");
+    const [isSelect, setIsSelect] = useState(false);
 
  
   useEffect(() => {
@@ -16,7 +17,15 @@ export const StateValuesProvider = ({ children }) => {
   }, [stateValues]);
 
   return (
-    <StateValuesContext.Provider value={{ stateValues, setStateValues, isEdit, setIsEdit,taskId, setTaskId }}>
+    <StateValuesContext.Provider value={
+      { stateValues, 
+        setStateValues, 
+        isEdit, 
+        setIsEdit,
+        taskId, 
+        setTaskId,
+        isSelect, 
+        setIsSelect }}>
       {children}
     </StateValuesContext.Provider>
   );

@@ -1,9 +1,10 @@
 import { useStateValues } from "../context/stateValuesProvider";
-import { useState,useEffect } from "react";
+import { useState,useEffect, useCallback } from "react";
 import DeleteTask from "../deleteTask/deleteTask";
 import EditTask from "../editTask/editTask";
 import Completed from "../completed/completed";
 import { styled } from "styled-components";
+import SelectStatus from "../filter/selectStatus";
 
 const Task = styled.div`
   display: flex;
@@ -14,6 +15,8 @@ const TodoList = () => {
     const { stateValues, setStateValues } = useStateValues();
     const [editingTasks, setEditingTasks] = useState({});
     const [isEditing, setIsEditing] = useState(false); 
+    const [option, setOption] = useState("all");
+    const { isSelect, setIsSelect } = useStateValues();
 
     const handleChange = (e, taskId) => {
       setEditingTasks((prevEditingTasks) => ({
@@ -56,8 +59,19 @@ const TodoList = () => {
     };
   
     const renderTasks = (arr) => {
-      return arr.map((item) => {
-        if (!item.completed) {
+      return arr.filter((todo) => {
+        if(option === "all"){
+           return true
+        }
+        else if(option === "active"){
+           
+           return !todo.completed 
+        }
+        else if(option === "completed"){
+          
+           return  todo.completed;
+        }
+    }).map((item) => {
           return (
             <li key={item.id}>
               <Completed taskId={item.id} completed={item.completed} />
@@ -87,16 +101,20 @@ const TodoList = () => {
               </div>
             </li>
           );
-        }
-        return null;
+        
+        
       });
     };
-  
+const  changeSelect = useCallback((childValue) => {
+    setOption(childValue)
+},[setOption])
+
     const tasks = renderTasks(stateValues);
     return (
       <div className="main">
         <h3>Active</h3>
-        {tasks}
+        <SelectStatus selectFunction={changeSelect}/>
+        <div>{tasks}</div>    
       </div>
     );
   };

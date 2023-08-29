@@ -6,10 +6,12 @@ import styled from "styled-components";
 const ColorCompleted = styled.div`
       color: green;
 `
-
+const CompletedTask = styled.ul`
+      padding-left: 0px;
+`
 
 const CompletedList = () => {
-    const {stateValues} = useStateValues();
+    const { stateValues } = useStateValues();
 
 const renderCompletedList = (arr) => {
       const completedList = arr.map(task => {
@@ -25,13 +27,13 @@ const renderCompletedList = (arr) => {
         : null
            
       })
-      return <ul>{completedList}</ul>
+      return <CompletedTask>{completedList}</CompletedTask>
 }
 const completed  = renderCompletedList(stateValues);
     return (
          <div>
             <h3>Completed</h3>
-             {completed}
+           {completed} 
          </div>)
 }
 export default CompletedList;
